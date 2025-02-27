@@ -2,16 +2,28 @@ namespace DiceCasino;
 
 public class MainMenu
 {
-    public static void Menu()
+    public static void Main()
     {
         var MoneyAmount = 100;
-        Console.WriteLine($"Ⓨⓞⓤ ⓗⓐⓥⓔ${MoneyAmount}"); //
-        Console.WriteLine("Ⓦⓔⓛⓒⓞⓜⓔ ⓣⓞ ⓣⓗⓔ Ⓓⓘⓒⓔ Ⓒⓐⓢⓘⓝⓞ! Ⓦⓗⓐⓣ ⓘⓢ ⓨⓞⓤⓡ ⓘⓝⓣⓔⓡⓔⓢⓣ ⓣⓞⓓⓐⓨ? \n 1. Yootz");
+        Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━┓");
+        Console.WriteLine("┃ Welcome to Yootz! ┃");
+        Console.WriteLine("┃ 1.Play Game       ┃");
+        Console.WriteLine("┃ 2.Save Game       ┃");
+        Console.WriteLine("┃ 3.Load Game       ┃");
+        Console.WriteLine($"┃ ${MoneyAmount}              ┃");
+        Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━┛");
+
         var Game = Console.ReadLine();
-        if (Game.ToLower() == "yootz")
+        
+        switch(Game)
         {
-            // ## if you want to bring back the function just get rid of the //.
-            Yootgame.Yootzgame();
+            case "1":
+                break
+            case "2":
+                break
+            case "3":
+                break
+
         }
     }
 }
