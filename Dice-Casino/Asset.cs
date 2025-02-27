@@ -1,6 +1,5 @@
 namespace DiceCasino;
 
-
 public class Assets
 {
     public static void dieAssets()
@@ -15,9 +14,4 @@ public class Assets
     }
 }
 
-public class SaveSystem
-{
-
-
-
-}
+public class SaveSystem { }
