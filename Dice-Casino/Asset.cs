@@ -2,13 +2,14 @@ namespace DiceCasino;
 
 public class Assets
 {
-    public static void dieAssets();
+    public static void dieAssets()
     {
-        var side1 = "⚀";
-        var side2 = "⚁";
-        var side3 = "⚂";
-        var side4 = "⚃";
-        var side5 = "⚄";
-        var side6 = "⚅";
+        Dictionary<int, string> DiceAss = new Dictionary<int, string>();
+        DiceAss.Add(0, "⚀");
+        DiceAss.Add(1, "⚁");
+        DiceAss.Add(2, "⚂");
+        DiceAss.Add(3, "⚃");
+        DiceAss.Add(4, "⚄");
+        DiceAss.Add(5, "⚅");
     }
 }
