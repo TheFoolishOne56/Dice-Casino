@@ -40,5 +40,19 @@ public class Yootgame
         Console.WriteLine(); //Continuing the ruls in the two different sections.
     }
 
-    public static void GamePlay() { }
+    public static void GamePlay() 
+    { 
+        Console.Clear();
+        GameGoing = true;
+        while(GameGoing == true)
+            {
+                
+
+            }
+
+
+
+
+
+    }
 }

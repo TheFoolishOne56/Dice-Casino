@@ -1,5 +1,6 @@
 namespace DiceCasino;
 
+
 public class Assets
 {
     public static void dieAssets()
@@ -12,4 +13,11 @@ public class Assets
         DiceAss.Add(4, "⚄");
         DiceAss.Add(5, "⚅");
     }
+}
+
+public class SaveSystem
+{
+
+
+
 }
