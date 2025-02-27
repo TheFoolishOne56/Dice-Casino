@@ -4,13 +4,15 @@ public class MainMenu
 {
     public static void Main()
     {
-        int MoneyAmount = 100;
-        Console.WriteLine($"Ⓨⓞⓤ ⓗⓐⓥⓔ${MoneyAmount}"); 
+        var MoneyAmount = 100;
+        Console.WriteLine($"Ⓨⓞⓤ ⓗⓐⓥⓔ${MoneyAmount}"); //
         Console.WriteLine("Ⓦⓔⓛⓒⓞⓜⓔ ⓣⓞ ⓣⓗⓔ Ⓓⓘⓒⓔ Ⓒⓐⓢⓘⓝⓞ! Ⓦⓗⓐⓣ ⓘⓢ ⓨⓞⓤⓡ ⓘⓝⓣⓔⓡⓔⓢⓣ ⓣⓞⓓⓐⓨ? \n 1. Yootz");
         var Game = Console.ReadLine();
-        if (Game.ToLower() == "yootz")
+        
+        switch(Game)
         {
-            Yootgame.Yootzgame(MoneyAmount);
+            // ## if you want to bring back the function just get rid of the //.
+            Yootgame.Yootzgame();
         }
     }
 }
