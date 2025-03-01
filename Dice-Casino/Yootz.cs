@@ -2,7 +2,7 @@ namespace DiceCasino;
 
 public class Yootgame
 {
-    public static void Yootzgame()
+    public static void Yootzgame(int MoneyAmount)
     {
         Playedbefore:
         Console.WriteLine("Welcome to Yootz! Have you played before? (yes/no)");
@@ -11,7 +11,7 @@ public class Yootgame
         //## for the
         if (hasPlayed.ToLower() == "yes")
         {
-            GamePlay();
+            GamePlay(MoneyAmount);
         }
         else if (hasPlayed.ToLower() == "no")
         {
@@ -40,10 +40,10 @@ public class Yootgame
         Console.WriteLine(); //Continuing the ruls in the two different sections.
     }
 
-    public static void GamePlay() 
+    public static void GamePlay(int MoneyAmount) 
     { 
         Console.Clear();
-        GameGoing = true;
+        var GameGoing = true;
         while(GameGoing == true)
             {
                 

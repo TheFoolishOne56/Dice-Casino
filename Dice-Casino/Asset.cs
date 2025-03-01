@@ -21,7 +21,7 @@ public class SaveSystem
 {
    static string saveFilePath = "savegame.txt";
 
-   static void SaveGame(string playerName, int money)
+   public static void SaveGame(string playerName, int money)
     {
         using (StreamWriter writer = new StreamWriter(saveFilePath))
         {
@@ -30,7 +30,7 @@ public class SaveSystem
         }
         Console.WriteLine("Game saved successfully!");
     }
-     static void LoadGame()
+     public static void LoadGame()
     {
         if (File.Exists(saveFilePath))
         {
