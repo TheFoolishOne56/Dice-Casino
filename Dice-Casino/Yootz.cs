@@ -84,7 +84,7 @@ public class Yootgame
             }
             for (int turn = 1; turn <= 2; turn++) // Give 2 chances to re-roll
             {
-                Console.WriteLine("\nEnter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all):");
+                Console.WriteLine("Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all):");
                 string input = Console.ReadLine();
 
                 if (!string.IsNullOrWhiteSpace(input))
