@@ -9,6 +9,7 @@ public class MainMenu
     {
         Console.Clear();
         int MoneyAmount = 100;
+        BettingVictoryCondish(MoneyAmount);
         Menu:
         
         Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━┓");
@@ -46,5 +47,19 @@ public class MainMenu
                 goto Menu;
 
         }
+    }
+
+    public static void BettingVictoryCondish(int MoneyAmount)
+    {
+        if(MoneyAmount == 999){
+            Console.WriteLine("You won!");
+            return;
+        }
+        else if(MoneyAmount == 0)
+        {
+            Console.WriteLine("You Lose!");
+            return;
+        }
+
     }
 }
