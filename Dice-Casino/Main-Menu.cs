@@ -23,8 +23,8 @@ public class MainMenu
         choice:
         Console.WriteLine("Please enter the number of your selection: ");
         var Game = Console.ReadLine();
-        
-        switch(Game)
+
+        switch (Game)
         {
             case "1":
                 Yootgame.Yootzgame(MoneyAmount);
