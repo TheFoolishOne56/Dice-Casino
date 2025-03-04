@@ -2,23 +2,21 @@ namespace DiceCasino;
 
 using System;
 using System.Data.SqlTypes;
+using System.Net;
 using System.Timers;
-public class Assets
-{
-    public static void dieAssets()
-    {
-        Dictionary<int, string> DiceAss = new Dictionary<int, string>();
-        DiceAss.Add(0, "⚀");
-        DiceAss.Add(1, "⚁");
-        DiceAss.Add(2, "⚂");
-        DiceAss.Add(3, "⚃");
-        DiceAss.Add(4, "⚄");
-        DiceAss.Add(5, "⚅");
-    }
-}
 
 public class Yootgame
 {
+    public static Dictionary<int, string> DiceGlyphs = new Dictionary<int, string>
+    {
+        { 0, "⚀" },
+        { 1, "⚁" },
+        { 2, "⚂" },
+        { 3, "⚃" },
+        { 4, "⚄" },
+        { 5, "⚅" },
+    };
+
     public static void Yootzgame(int MoneyAmount)
     {
         Playedbefore:
@@ -92,12 +90,14 @@ public class Yootgame
             bool[] keepDice = new bool[6]; // Array to track kept dice
             for (int i = 0; i < 6; i++)
             {
-                diceRolls[i] = roll.Next(0,5);
-                Console.WriteLine($"Roll {i}: {diceRolls}");
+                diceRolls[i] = roll.Next(0, 5);
+                Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
             }
             for (int turn = 1; turn <= 2; turn++) // Give 2 chances to re-roll
             {
-                Console.WriteLine("Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all):");
+                Console.WriteLine(
+                    "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all):"
+                );
                 string input = Console.ReadLine();
 
                 if (!string.IsNullOrWhiteSpace(input))
@@ -113,16 +113,26 @@ public class Yootgame
                 }
 
                 // Re-roll only the dice that are not kept
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     if (!keepDice[i])
                     {
                         diceRolls[i] = roll.Next(0, 5);
-                        Console.WriteLine($"New roll {i}:");
-                        Console.WriteLine($"{diceRolls}");
+                        Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
+                        DiceKept(keepDice, diceRolls);
                     }
                 }
+            }
+        }
+    }
 
+    public static void DiceKept(bool[] keepDice, int[] diceRolls)
+    {
+        for (int a = 0; a < 2; a++)
+        {
+            if (keepDice[a])
+            {
+                Console.WriteLine($"Dice kept: {a + 1}; {DiceGlyphs[diceRolls[a]]}");
             }
         }
     }
@@ -138,11 +148,19 @@ public class Yootgame
         var understanding = Console.ReadLine();
         if (understanding.ToLower() == "yes")
         {
-        Console.Clear();
+            Console.Clear();
         }
         else
         {
             TimeOutCorner();
         }
+    }
+    public static void DiceGameWin()
+    {
+        Console.WriteLine("win");
+    }
+     public static void DiceGamelose()
+    {
+        Console.WriteLine("lose");
     }
 }
