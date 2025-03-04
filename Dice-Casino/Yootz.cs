@@ -3,6 +3,19 @@ namespace DiceCasino;
 using System;
 using System.Data.SqlTypes;
 using System.Timers;
+public class Assets
+{
+    public static void dieAssets()
+    {
+        Dictionary<int, string> DiceAss = new Dictionary<int, string>();
+        DiceAss.Add(0, "⚀");
+        DiceAss.Add(1, "⚁");
+        DiceAss.Add(2, "⚂");
+        DiceAss.Add(3, "⚃");
+        DiceAss.Add(4, "⚄");
+        DiceAss.Add(5, "⚅");
+    }
+}
 
 public class Yootgame
 {
@@ -77,9 +90,9 @@ public class Yootgame
             Random roll = new Random();
             int[] diceRolls = new int[6]; // Array to store dice values
             bool[] keepDice = new bool[6]; // Array to track kept dice
-            for (int i = 1; i <= 6; i++)
+            for (int i = 0; i < 6; i++)
             {
-                diceRolls[i] = roll.Next(1,7);
+                diceRolls[i] = roll.Next(0,5);
                 Console.WriteLine($"Roll {i}: {diceRolls}");
             }
             for (int turn = 1; turn <= 2; turn++) // Give 2 chances to re-roll
@@ -92,7 +105,7 @@ public class Yootgame
                     string[] choices = input.Split(' ');
                     foreach (string choice in choices)
                     {
-                        if (int.TryParse(choice, out int index) && index >= 1 && index <= 6)
+                        if (int.TryParse(choice, out int index) && index >= 0 && index < 6)
                         {
                             keepDice[index - 1] = true; // Mark dice as kept
                         }
@@ -100,11 +113,11 @@ public class Yootgame
                 }
 
                 // Re-roll only the dice that are not kept
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     if (!keepDice[i])
                     {
-                        diceRolls[i] = roll.Next(1, 7);
+                        diceRolls[i] = roll.Next(0, 5);
                         Console.WriteLine($"New roll {i}:");
                         Console.WriteLine($"{diceRolls}");
                     }
