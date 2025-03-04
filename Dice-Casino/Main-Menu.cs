@@ -7,6 +7,7 @@ public class MainMenu
 {
     public static void Main()
     {
+        Console.Clear();
         int MoneyAmount = 100;
         Menu:
         
