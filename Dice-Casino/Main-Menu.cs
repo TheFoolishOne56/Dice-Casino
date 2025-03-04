@@ -29,7 +29,7 @@ public class MainMenu
             case "2":                
                 Console.WriteLine("Please enter you name: ");
                 var Playname = Console.ReadLine();
-                SaveSystem.SaveGame(Playname, MoneyAmount);
+                SaveSystem.SaveGame(Playname, MoneyAmount); //Make a new var that == MoneyAmount to update it from save
                 goto choice;
             case "3":
                 SaveSystem.LoadGame();

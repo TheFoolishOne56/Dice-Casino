@@ -1,5 +1,7 @@
 namespace DiceCasino;
 
+using System.Timers;
+
 public class Yootgame
 {
     public static void Yootzgame(int MoneyAmount)
@@ -15,7 +17,19 @@ public class Yootgame
         }
         else if (hasPlayed.ToLower() == "no")
         {
+            gameRules:
             GameRules();
+            Console.WriteLine("Are you ready to play? Yes/No)");
+            var Cont = Console.ReadLine();
+            if (Cont.ToLower() == "yes")
+            {
+                Console.Clear();
+                goto Playedbefore;
+            }
+            else
+            {
+                goto gameRules;
+            }
         }
         else
         {
@@ -28,31 +42,46 @@ public class Yootgame
     { //#this is writing out the rules before using the GamePlay function.
         Console.WriteLine(
             "Starting off we have the basics of the gameplay which is how to roll the dice. \n"
-                + "Rolling the Dice: Each player takes a turn rolling the five dice. \n"
-                + "Players can roll the dice up to three times per turn to get the highest-scoring combination. \n"
-                + "First Roll: The player rolls all five dice. \n"
-                + "Second and Third Rolls: After the first roll, the player can choose to keep any dice they want and re-roll the rest. \n"
-                + "They may re-roll some or all of the dice two more times. \n"
-                + "Players can also choose to stop after the first or second roll if they have a combination they like. \n"
+                + "Rolling the Dice: Each player takes a turn rolling 6 dice. \n"
+                + "Players can roll the dice as many times as they want untill bust or you willingly end your turn. \n"
+                + "if you fail to roll a 1, 5, or triple you bust and lose all points gained this turn.\n"
                 + "Scoring: After rolling, the player chooses a category to score their dice. \n"
                 + "Each category can only be used once per game. Categories are divided into two sections: Upper Section and Lower Section."
         );
-        Console.WriteLine(); //Continuing the ruls in the two different sections.
+        Console.WriteLine(
+            "Here the basics in how your points will be scored\n"
+                + "1 and 5 can be scored individually.\n"
+                + "You can also score 3 of a kind with any number.\n"
+                + ""
+        ); //Continuing the ruls in the two different sections.
     }
 
-    public static void GamePlay(int MoneyAmount) 
-    { 
-        Console.Clear();
-        var GameGoing = true;
-        while(GameGoing == true)
+    public static void GamePlay(int MoneyAmount)
+    {
+        var Playing = true;
+        while (Playing == true)
+        {
+            Betting:
+            Console.WriteLine($"{MoneyAmount}");
+            Console.WriteLine("How much would you like to bet?");
+            var moneybet = int.Parse(Console.ReadLine());
+            if (moneybet > MoneyAmount)
             {
-                
-
+                Console.WriteLine("Invalid amount! You fucking idiot! Go to the Time Out Corner!");
+                TimeOutCorner();
+                Console.Clear();
+                goto Betting;
             }
+        }
+    }
 
+    private static Timer timer;
 
-
-
-
+    //Punish all and any mistakes! Even small ones!
+    public static void TimeOutCorner()
+    {
+        Console.WriteLine("You've been naughty, now sit and think about what you've done");
+        timer = new Timer(20000);
+        timer.Start();
     }
 }
