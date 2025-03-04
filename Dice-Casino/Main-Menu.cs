@@ -7,7 +7,7 @@ public class MainMenu
 {
     public static void Main()
     {
-        var MoneyAmount = 100;
+        int MoneyAmount = 100;
         Menu:
         
         Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━┓");
@@ -15,6 +15,7 @@ public class MainMenu
         Console.WriteLine("┃ 1.Play Game       ┃");
         Console.WriteLine("┃ 2.Save Game       ┃");
         Console.WriteLine("┃ 3.Load Game       ┃");
+        Console.WriteLine("┃ 4.Clear Console   ┃");
         Console.WriteLine($"┃ ${MoneyAmount}              ┃");
         Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━┛");
         choice:
@@ -32,13 +33,14 @@ public class MainMenu
                 SaveSystem.SaveGame(Playname, MoneyAmount); //Make a new var that == MoneyAmount to update it from save
                 goto choice;
             case "3":
-                SaveSystem.LoadGame();
+                SaveSystem.LoadGame(ref MoneyAmount);
+
                 goto choice;
-            case "4":
+            case "5":
                 var money = int.Parse(Console.ReadLine());
                 MoneyAmount = money;
                 goto choice;
-            case "5":
+            case "4":
                 Console.Clear();
                 goto Menu;
 

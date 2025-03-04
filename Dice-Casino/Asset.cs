@@ -30,7 +30,7 @@ public class SaveSystem
         }
         Console.WriteLine("Game saved successfully!");
     }
-     public static void LoadGame()
+     public static void LoadGame(ref int MoneyAmount)
     {
         if (File.Exists(saveFilePath))
         {
@@ -38,6 +38,7 @@ public class SaveSystem
             {
                 string playerName = reader.ReadLine();
                 int money = int.Parse(reader.ReadLine());
+                MoneyAmount = money;
 
                 Console.WriteLine($"Loaded Game: {playerName} - Money: {money}");
             }
