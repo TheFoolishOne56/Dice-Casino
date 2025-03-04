@@ -14,8 +14,8 @@ public class MainMenu
         Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━┛");
 
         var Game = Console.ReadLine();
-        
-        switch(Game)
+
+        switch (Game)
         {
             case "1":
                 break;
@@ -23,7 +23,6 @@ public class MainMenu
                 break;
             case "3":
                 break;
-
         }
     }
 }
