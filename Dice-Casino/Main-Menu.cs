@@ -9,7 +9,6 @@ public class MainMenu
     {
         Console.Clear();
         int MoneyAmount = 100;
-        BettingVictoryCondish(MoneyAmount);
         Menu:
         
         Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━┓");
@@ -22,6 +21,7 @@ public class MainMenu
         Console.WriteLine("┗━━━━━━━━━━━━━━━━━━━┛");
         choice:
         Console.WriteLine("Please enter the number of your selection: ");
+        BettingVictoryCondish(MoneyAmount);
         var Game = Console.ReadLine();
 
         switch (Game)
@@ -51,15 +51,20 @@ public class MainMenu
 
     public static void BettingVictoryCondish(int MoneyAmount)
     {
-        if(MoneyAmount == 999){
-            Console.WriteLine("You won!");
-            return;
+        if(MoneyAmount >= 999){
+            Console.Clear();
+            Console.WriteLine("┏━━━━━━━━┓");
+            Console.WriteLine("┃You won!┃");
+            Console.WriteLine("┗━━━━━━━━┛");
+            Environment.Exit(0);
         }
-        else if(MoneyAmount == 0)
-        {
-            Console.WriteLine("You Lose!");
-            return;
-        }
+        else if(MoneyAmount <= 0)
+        {   Console.Clear();
+            Console.WriteLine("┏━━━━━━━━━┓");
+            Console.WriteLine("┃You lose!┃");
+            Console.WriteLine("┗━━━━━━━━━┛");
+            Environment.Exit(0);
 
     }
+}
 }

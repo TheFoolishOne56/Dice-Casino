@@ -119,9 +119,9 @@ public class Yootgame
                     {
                         diceRolls[i] = roll.Next(0, 5);
                         Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
-                        DiceKept(keepDice, diceRolls);
                     }
                 }
+                DiceKept(keepDice, diceRolls);
             }
         }
     }
