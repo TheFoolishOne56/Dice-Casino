@@ -9,12 +9,12 @@ public class Yootgame
 {
     public static Dictionary<int, string> DiceGlyphs = new Dictionary<int, string>
     {
-        { 0, "⚀" },
-        { 1, "⚁" },
-        { 2, "⚂" },
-        { 3, "⚃" },
-        { 4, "⚄" },
-        { 5, "⚅" },
+        { 0, "[1]" },
+        { 1, "[2]" },
+        { 2, "[3]" },
+        { 3, "[4]" },
+        { 4, "[5]" },
+        { 5, "[6]" },
     };
 
     public static void Yootzgame(int MoneyAmount)
@@ -71,6 +71,7 @@ public class Yootgame
 
     public static void GamePlay(int MoneyAmount)
     {
+        Console.Clear();
         var Playing = true;
         while (Playing == true)
         {
@@ -93,7 +94,7 @@ public class Yootgame
                 diceRolls[i] = roll.Next(0, 5);
                 Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
             }
-            for (int turn = 1; turn <= 2; turn++) // Give 2 chances to re-roll
+            for (int turn = 1; turn <= 3; turn++) // Give 2 chances to re-roll
             {
                 Console.WriteLine(
                     "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all):"
@@ -105,7 +106,7 @@ public class Yootgame
                     string[] choices = input.Split(' ');
                     foreach (string choice in choices)
                     {
-                        if (int.TryParse(choice, out int index) && index >= 0 && index < 6)
+                        if (int.TryParse(choice, out int index) && 0 < index && index <= 6)
                         {
                             keepDice[index - 1] = true; // Mark dice as kept
                         }
@@ -128,7 +129,7 @@ public class Yootgame
 
     public static void DiceKept(bool[] keepDice, int[] diceRolls)
     {
-        for (int a = 0; a < 2; a++)
+        for (int a = 0; a < 6; a++)
         {
             if (keepDice[a])
             {
@@ -136,8 +137,6 @@ public class Yootgame
             }
         }
     }
-
-    private static Timer timer;
 
     //Punish all and any mistakes! Even small ones!
     public static void TimeOutCorner()
