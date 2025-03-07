@@ -5,10 +5,17 @@ namespace DiceCasino;
 
 public class MainMenu
 {
+    public static void amountOfMoney(int money)
+    {
+        
+    }
+
     public static void Main()
     {
         Console.Clear();
         int MoneyAmount = 100; //Money doesn't update
+        //amountOfMoney(MoneyAmount);
+
         Menu:
         
         Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━┓");
@@ -27,7 +34,7 @@ public class MainMenu
         switch (Game)
         {
             case "1":
-                Yootgame.Yootzgame(MoneyAmount);
+                Yootgame.Yootzgame(ref MoneyAmount);
                 break;
             case "2":                
                 Console.WriteLine("Please enter you name: ");
@@ -36,7 +43,6 @@ public class MainMenu
                 goto choice;
             case "3":
                 SaveSystem.LoadGame(ref MoneyAmount);
-
                 goto choice;
             case "5": //press five for a secret suprise
                 var money = int.Parse(Console.ReadLine());//can set your own money

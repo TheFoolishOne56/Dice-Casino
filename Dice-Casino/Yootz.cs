@@ -17,7 +17,7 @@ public class Yootgame
         { 5, "[6]" },
     };
 
-    public static void Yootzgame(int MoneyAmount)
+    public static void Yootzgame(ref int MoneyAmount)
     {
         Playedbefore:
         Console.WriteLine("Welcome to Yootz! Have you played before? (yes/no)");
@@ -26,7 +26,7 @@ public class Yootgame
         //## for the
         if (hasPlayed.ToLower() == "yes")
         {
-            GamePlay(MoneyAmount);
+            GamePlay(ref MoneyAmount);
         }
         else if (hasPlayed.ToLower() == "no")
         {
@@ -69,7 +69,7 @@ public class Yootgame
         ); //Continuing the ruls in the two different sections.
     }
 
-    public static void GamePlay(int MoneyAmount)
+    public static void GamePlay(ref int MoneyAmount)
     {
         Console.Clear();
         var Playing = true;
@@ -102,9 +102,7 @@ public class Yootgame
                 if (input.ToLower() == "done")
                 {
                     Done = false;
-                    CheckForPoints(moneybet, MoneyAmount);
-                    Console.WriteLine("Would you like to ");
-                    MainMenu.Main();
+                    CheckForPoints(moneybet,ref MoneyAmount);
                 }
                 if (!string.IsNullOrWhiteSpace(input))
                 {
@@ -133,12 +131,11 @@ public class Yootgame
                     if(DiceValue.Count >= 6)
                     {
                         Done = false;
-                        CheckForPoints(moneybet, MoneyAmount);
+                        CheckForPoints(moneybet,ref MoneyAmount);
                         Console.WriteLine("Would you like to play again? [yes/no]");
                         string PlyrFeedBack = Console.ReadLine();
                         if(PlyrFeedBack.ToLower() == "yes")
                         {
-                            
                             Console.Clear();
                             goto Betting;
                         }
@@ -183,7 +180,7 @@ public class Yootgame
         }
     }
 
-    public static void CheckForPoints(int moneybet, int MoneyAmount)
+    public static void CheckForPoints(int moneybet, ref int MoneyAmount)
     {
         for (int a = 0; a < 6; a++)
         {
@@ -217,6 +214,8 @@ public class Yootgame
                 //subtract bet amount x 2 to money amount
                 MoneyAmount -= (int) (moneybet*2);
             }
+            //int amountOfMoney = MoneyAmount;
+            //MainMenu.amountOfMoney(amountOfMoney);
         }
-}
+    }
 }
