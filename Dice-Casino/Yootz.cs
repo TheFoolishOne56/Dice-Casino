@@ -96,9 +96,7 @@ public class Yootgame
             var Done = true;
             while (true == Done)
             {
-                Console.WriteLine(
-                    "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all)," 
-                    +"\nIf you would like to stop rolling, or can no longer roll any dice, type done:");
+                Console.WriteLine("Enter the dice numbers (1-6) to keep, separated by spaces, press Enter to reroll, or input Done to end the game");
                 string input = Console.ReadLine();
                 if (input.ToLower() == "done")
                 {
@@ -129,6 +127,25 @@ public class Yootgame
                     }
                 }
                 NumberOfDiceKept(keepDice, diceRolls);
+                
+                for (int i = 0; i <= 6; i++)
+                {
+                    if(keepDice[0-5] != false)
+                    {
+                        Done = false;
+                        CheckForPoints(keepDice, moneybet, MoneyAmount);
+                        Console.WriteLine("Would you like to play again? [yes/no]");
+                        string PlyrFeedBack = Console.ReadLine();
+                        if(PlyrFeedBack.ToLower() == "yes")
+                        {
+                            
+                        }
+                        else
+                        {
+                            MainMenu.Main();
+                        }
+                    }
+                }
             }
         }
     }
