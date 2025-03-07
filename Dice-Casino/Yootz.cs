@@ -1,8 +1,7 @@
 namespace DiceCasino;
 
 using System;
-using System.Data.SqlTypes;
-using System.Net;
+using System.ComponentModel.Design;
 using System.Timers;
 
 public class Yootgame
@@ -81,7 +80,7 @@ public class Yootgame
             if (moneybet > MoneyAmount)
             {
                 Console.WriteLine("Invalid amount! You fucking idiot! Go to the Time Out Corner!");
-                TimeOutCorner();
+                PutinTimeOut();
                 goto Betting;
             }
             Console.WriteLine("Rolling dice!");
@@ -93,19 +92,25 @@ public class Yootgame
                 diceRolls[i] = roll.Next(0, 5);
                 Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
             }
-            for (int turn = 1; turn <= 2; turn++) // Give 2 chances to re-roll
+            CheckForFail(diceRolls);
+            var Done = true;
+            while (true == Done) // Give 2 chances to re-roll
             {
                 Console.WriteLine(
-                    "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all):"
+                    "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all), If you would like to stop rolling type done:"
                 );
                 string input = Console.ReadLine();
-
+                if (input == "Done")
+                {
+                    Done = false;
+                    MainMenu.Main();
+                }
                 if (!string.IsNullOrWhiteSpace(input))
                 {
                     string[] choices = input.Split(' ');
                     foreach (string choice in choices)
                     {
-                        if (int.TryParse(choice, out int index) && index >= 0 && index < 6)
+                        if (int.TryParse(choice, out int index) && 0 < index && index <= 6)
                         {
                             keepDice[index - 1] = true; // Mark dice as kept
                         }
@@ -120,27 +125,28 @@ public class Yootgame
                         diceRolls[i] = roll.Next(0, 5);
                         Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
                     }
+                    CheckForFail(diceRolls);
                 }
                 DiceKept(keepDice, diceRolls);
+
             }
         }
     }
 
     public static void DiceKept(bool[] keepDice, int[] diceRolls)
     {
-        for (int a = 0; a < 2; a++)
+        for (int a = 0; a < 6; a++)
         {
             if (keepDice[a])
             {
                 Console.WriteLine($"Dice kept: {a + 1}; {DiceGlyphs[diceRolls[a]]}");
             }
+            //CheckForPoints(keepDice);
         }
     }
 
-    private static Timer timer;
-
     //Punish all and any mistakes! Even small ones!
-    public static void TimeOutCorner()
+    public static void PutinTimeOut()
     {
         Console.WriteLine("You've made a mistake, now sit and think about what you've done");
         Task.Delay(20000).Wait();
@@ -152,15 +158,21 @@ public class Yootgame
         }
         else
         {
-            TimeOutCorner();
+            PutinTimeOut();
         }
     }
-    public static void DiceGameWin()
+    public static void CheckForPoints(bool[] keepDice)
     {
-        Console.WriteLine("win");
+
     }
-     public static void DiceGamelose()
+    public static void CheckForFail(int[] diceRolls)
     {
-        Console.WriteLine("lose");
+        var hasTriple = new List<int> { 1, 2, 3, 4, 5, 6 }
+            .Where(num => 2 < diceRolls.Where(x => x == num).Count())
+            .Any();
+
+        //Lose condition for not having 1
+        if (!diceRolls.Contains(1) && !diceRolls.Contains(5) && !hasTriple)
+            Console.WriteLine("Bust!\n What a loser!\n Thanks for the money!");
     }
 }
