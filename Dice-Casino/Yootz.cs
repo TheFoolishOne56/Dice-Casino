@@ -17,7 +17,7 @@ public class Yootgame
         { 5, "[6]" },
     };
 
-    public static void Yootzgame(int MoneyAmount)
+    public static void Yootzgame(ref Money money)
     {
         Playedbefore:
         Console.WriteLine("Welcome to Yootz! Have you played before? (yes/no)");
@@ -26,7 +26,7 @@ public class Yootgame
         //## for the
         if (hasPlayed.ToLower() == "yes")
         {
-            GamePlay(MoneyAmount);
+            GamePlay(ref money);
         }
         else if (hasPlayed.ToLower() == "no")
         {
@@ -67,19 +67,20 @@ public class Yootgame
                 + "You can also score 3 of a kind with any number.\n"
                 + ""
         ); //Continuing the ruls in the two different sections.
+            //Rewrite rules 
     }
 
-    public static void GamePlay(int MoneyAmount)
+    public static void GamePlay(ref Money money)
     {
         Console.Clear();
         var Playing = true;
         while (Playing == true)
         {
             Betting:
-            Console.WriteLine($"{MoneyAmount}");
+            Console.WriteLine($"{money.MoneyAmount}");
             Console.WriteLine("How much would you like to bet?");
             var moneybet = int.Parse(Console.ReadLine());
-            if (moneybet > MoneyAmount)
+            if (moneybet > money.MoneyAmount)
             {
                 Console.WriteLine("Invalid amount! You fucking idiot! Go to the Time Out Corner!");
                 PutinTimeOut();
@@ -102,7 +103,7 @@ public class Yootgame
                 if (input.ToLower() == "done")
                 {
                     Done = false;
-                    CheckForPoints(moneybet, MoneyAmount);
+                    CheckForPoints(moneybet, ref money);
                     Console.WriteLine("Would you like to ");
                     MainMenu.Main();
                 }
@@ -129,24 +130,25 @@ public class Yootgame
                 }
                 NumberOfDiceKept(keepDice, diceRolls);
                 
-                for (int i = 0; i <= 6; i++)
+                
+                if(DiceValue.Count >= 6)
                 {
-                    if(keepDice[0-5] != false)
+                    Done = false;
+                    CheckForPoints(moneybet, ref money);
+                    Console.WriteLine("Would you like to play again? [yes/no]");
+                    string PlyrFeedBack = Console.ReadLine();
+                    if(PlyrFeedBack.ToLower() == "yes")
                     {
-                        Done = false;
-                        CheckForPoints(moneybet, MoneyAmount);
-                        Console.WriteLine("Would you like to play again? [yes/no]");
-                        string PlyrFeedBack = Console.ReadLine();
-                        if(PlyrFeedBack.ToLower() == "yes")
-                        {
-                            
-                        }
-                        else
-                        {
-                            MainMenu.Main();
-                        }
+                        Done = true;
+                        Console.Clear();
+                        goto Betting;
+                    }
+                    else
+                    {
+                        MainMenu.Main();
                     }
                 }
+                
             }
         }
     }
@@ -182,39 +184,39 @@ public class Yootgame
         }
     }
 
-    public static void CheckForPoints(int moneybet, int MoneyAmount)
+    public static void CheckForPoints(int moneybet, ref Money money)
     {
         for (int a = 0; a < 6; a++)
         {
             if (DiceValue.Contains(1))
             {
                 //add bet amount to money amount
-                 MoneyAmount += moneybet;
+                 money.MoneyAmount += moneybet;
             }
             else if (DiceValue.Contains(3))
             {
                 //add bet x 1.5 to money amount
-                MoneyAmount += (int) (moneybet*1.5);
+                money.MoneyAmount += (int) (moneybet*1.5);
             }
             else if (DiceValue.Contains(5))
             {
                 //add bet x 2 to money amount
-                MoneyAmount += (int) (moneybet*2);
+               money.MoneyAmount += (int) (moneybet*2);
             }
              else if (DiceValue.Contains(2))
             {
                 //subtract bet amount to money amount
-                MoneyAmount -= moneybet;
+                money.MoneyAmount -= moneybet;
             }
              else if (DiceValue.Contains(4))
             {
                 //subtract bet amount x 1.5 to money amount
-                MoneyAmount -= (int) (moneybet*1.5);
+                money.MoneyAmount -= (int) (moneybet*1.5);
             }
              else if (DiceValue.Contains(6))
             {
                 //subtract bet amount x 2 to money amount
-                MoneyAmount -= (int) (moneybet*2);
+                money.MoneyAmount -= (int) (moneybet*2);
             }
         }
     }
