@@ -93,17 +93,18 @@ public class Yootgame
                 diceRolls[i] = roll.Next(0, 5);
                 Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
             }
-            CheckForFail(diceRolls);
             var Done = true;
-            while (true == Done) // Give 2 chances to re-roll
+            while (true == Done)
             {
                 Console.WriteLine(
-                    "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all), If you would like to stop rolling type done:"
-                );
+                    "Enter the dice numbers (1-6) to keep, separated by spaces (or press Enter to re-roll all)," 
+                    +"\nIf you would like to stop rolling, or can no longer roll any dice, type done:");
                 string input = Console.ReadLine();
-                if (input == "Done")
+                if (input.ToLower() == "done")
                 {
                     Done = false;
+                    CheckForPoints(keepDice, moneybet, MoneyAmount);
+                    Console.WriteLine("Would you like to ");
                     MainMenu.Main();
                 }
                 if (!string.IsNullOrWhiteSpace(input))
@@ -126,14 +127,13 @@ public class Yootgame
                         diceRolls[i] = roll.Next(0, 5);
                         Console.WriteLine($"Roll {i + 1}: {DiceGlyphs[diceRolls[i]]}");
                     }
-                    CheckForFail(diceRolls);
                 }
-                DiceKept(keepDice, diceRolls);
+                NumberOfDiceKept(keepDice, diceRolls);
             }
         }
     }
 
-    public static void DiceKept(bool[] keepDice, int[] diceRolls)
+    public static void NumberOfDiceKept(bool[] keepDice, int[] diceRolls)
     {
         for (int a = 0; a < 6; a++)
         {
@@ -162,19 +162,19 @@ public class Yootgame
         }
     }
 
-    public static void CheckForPoints(bool[] keepDice)
+    public static void CheckForPoints(bool[] keepDice, int moneybet, int MoneyAmount)
     {
-        ;
+        if (keepDice.)
     }
 
-    public static void CheckForFail(int[] diceRolls)
-    {
-        var hasTriple = new List<int> { 1, 2, 3, 4, 5, 6 }
-            .Where(num => 2 < diceRolls.Where(x => x == num).Count())
-            .Any();
-
-        //Lose condition for not having 1
-        if (!diceRolls.Contains(1) ^ !diceRolls.Contains(5) ^ !hasTriple)
-            Console.WriteLine("Bust!\n What a loser!\n Thanks for the money!");
-    }
+    //public static void CheckForFail(int[] diceRolls)//not works?
+    //{
+    //    //var hasTriple = new List<int> { 1, 2, 3, 4, 5, 6 }
+    //    //    .Where(num => 2 < diceRolls.Where(x => x == num).Count())
+    //    //    .Any();
+//
+    //    //Lose condition for not having 1
+    //    if (!diceRolls.Contains(1) && !diceRolls.Contains(5) && !diceRolls.Contains(3))
+    //        Console.WriteLine("Bust!\nWhat a loser!\nThanks for the money!");
+    //}
 }
