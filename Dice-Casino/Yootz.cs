@@ -128,7 +128,6 @@ public class Yootgame
                     CheckForFail(diceRolls);
                 }
                 DiceKept(keepDice, diceRolls);
-
             }
         }
     }
@@ -161,10 +160,12 @@ public class Yootgame
             PutinTimeOut();
         }
     }
+
     public static void CheckForPoints(bool[] keepDice)
     {
-
+        ;
     }
+
     public static void CheckForFail(int[] diceRolls)
     {
         var hasTriple = new List<int> { 1, 2, 3, 4, 5, 6 }
@@ -172,7 +173,7 @@ public class Yootgame
             .Any();
 
         //Lose condition for not having 1
-        if (!diceRolls.Contains(1) && !diceRolls.Contains(5) && !hasTriple)
+        if (!diceRolls.Contains(1) ^ !diceRolls.Contains(5) ^ !hasTriple)
             Console.WriteLine("Bust!\n What a loser!\n Thanks for the money!");
     }
 }
