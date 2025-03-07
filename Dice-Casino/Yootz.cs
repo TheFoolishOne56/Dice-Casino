@@ -6,6 +6,7 @@ using System.Timers;
 
 public class Yootgame
 {
+    public static List<int> DiceValue = new List<int>();
     public static Dictionary<int, string> DiceGlyphs = new Dictionary<int, string>
     {
         { 0, "[1]" },
@@ -101,7 +102,7 @@ public class Yootgame
                 if (input.ToLower() == "done")
                 {
                     Done = false;
-                    CheckForPoints(keepDice, moneybet, MoneyAmount);
+                    CheckForPoints(moneybet, MoneyAmount);
                     Console.WriteLine("Would you like to ");
                     MainMenu.Main();
                 }
@@ -133,7 +134,7 @@ public class Yootgame
                     if(keepDice[0-5] != false)
                     {
                         Done = false;
-                        CheckForPoints(keepDice, moneybet, MoneyAmount);
+                        CheckForPoints(moneybet, MoneyAmount);
                         Console.WriteLine("Would you like to play again? [yes/no]");
                         string PlyrFeedBack = Console.ReadLine();
                         if(PlyrFeedBack.ToLower() == "yes")
@@ -152,10 +153,12 @@ public class Yootgame
 
     public static void NumberOfDiceKept(bool[] keepDice, int[] diceRolls)
     {
+
         for (int a = 0; a < 6; a++)
         {
             if (keepDice[a])
             {
+                DiceValue.Add(a);
                 Console.WriteLine($"Dice kept: {a + 1}; {DiceGlyphs[diceRolls[a]]}");
             }
             //CheckForPoints(keepDice);
@@ -179,9 +182,35 @@ public class Yootgame
         }
     }
 
-    public static void CheckForPoints(bool[] keepDice, int moneybet, int MoneyAmount)
+    public static void CheckForPoints(int moneybet, int MoneyAmount)
     {
-        if (keepDice.)
+        for (int a = 0; a < 6; a++)
+        {
+            if (DiceValue.Contains(1))
+            {
+                //add bet amount
+            }
+            else if (DiceValue.Contains(3))
+            {
+                //add bet x 1.5
+            }
+            else if (DiceValue.Contains(5))
+            {
+                //add bet x 2
+            }
+             else if (DiceValue.Contains(2))
+            {
+                //subtract bet amount
+            }
+             else if (DiceValue.Contains(4))
+            {
+                //subtract bet amount x 1.5
+            }
+             else if (DiceValue.Contains(6))
+            {
+                //subtract bet amount x 2
+            }
+        }
     }
 
     //public static void CheckForFail(int[] diceRolls)//not works?
