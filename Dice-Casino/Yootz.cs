@@ -129,9 +129,8 @@ public class Yootgame
                 }
                 NumberOfDiceKept(keepDice, diceRolls);
                 
-                for (int i = 0; i <= 6; i++)
-                {
-                    if(keepDice[0-5] != false)
+                
+                    if(DiceValue.Count >= 6)
                     {
                         Done = false;
                         CheckForPoints(moneybet, MoneyAmount);
@@ -140,13 +139,15 @@ public class Yootgame
                         if(PlyrFeedBack.ToLower() == "yes")
                         {
                             
+                            Console.Clear();
+                            goto Betting;
                         }
                         else
                         {
                             MainMenu.Main();
                         }
                     }
-                }
+                
             }
         }
     }
@@ -217,16 +218,5 @@ public class Yootgame
                 MoneyAmount -= (int) (moneybet*2);
             }
         }
-    }
-
-    //public static void CheckForFail(int[] diceRolls)//not works?
-    //{
-    //    //var hasTriple = new List<int> { 1, 2, 3, 4, 5, 6 }
-    //    //    .Where(num => 2 < diceRolls.Where(x => x == num).Count())
-    //    //    .Any();
-//
-    //    //Lose condition for not having 1
-    //    if (!diceRolls.Contains(1) && !diceRolls.Contains(5) && !diceRolls.Contains(3))
-    //        Console.WriteLine("Bust!\nWhat a loser!\nThanks for the money!");
-    //}
+}
 }

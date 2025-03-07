@@ -8,7 +8,7 @@ public class MainMenu
     public static void Main()
     {
         Console.Clear();
-        int MoneyAmount = 100;
+        int MoneyAmount = 100; //Money doesn't update
         Menu:
         
         Console.WriteLine("┏━━━━━━━━━━━━━━━━━━━┓");
@@ -38,8 +38,8 @@ public class MainMenu
                 SaveSystem.LoadGame(ref MoneyAmount);
 
                 goto choice;
-            case "5":
-                var money = int.Parse(Console.ReadLine());
+            case "5": //press five for a secret suprise
+                var money = int.Parse(Console.ReadLine());//can set your own money
                 MoneyAmount = money;
                 goto choice;
             case "4":
@@ -65,6 +65,6 @@ public class MainMenu
             Console.WriteLine("┗━━━━━━━━━┛");
             Environment.Exit(0);
 
+        }
     }
-}
 }
