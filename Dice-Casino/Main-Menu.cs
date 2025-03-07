@@ -10,10 +10,12 @@ public class MainMenu
         
     }
 
+    public static int MoneyAmount = 100;
+
     public static void Main()
     {
         Console.Clear();
-        int MoneyAmount = 100; //Money doesn't update
+         //Money doesn't update
         //amountOfMoney(MoneyAmount);
 
         Menu:
