@@ -188,27 +188,33 @@ public class Yootgame
         {
             if (DiceValue.Contains(1))
             {
-                //add bet amount
+                //add bet amount to money amount
+                 MoneyAmount += moneybet;
             }
             else if (DiceValue.Contains(3))
             {
-                //add bet x 1.5
+                //add bet x 1.5 to money amount
+                MoneyAmount += (int) (moneybet*1.5);
             }
             else if (DiceValue.Contains(5))
             {
-                //add bet x 2
+                //add bet x 2 to money amount
+                MoneyAmount += (int) (moneybet*2);
             }
              else if (DiceValue.Contains(2))
             {
-                //subtract bet amount
+                //subtract bet amount to money amount
+                MoneyAmount -= moneybet;
             }
              else if (DiceValue.Contains(4))
             {
-                //subtract bet amount x 1.5
+                //subtract bet amount x 1.5 to money amount
+                MoneyAmount -= (int) (moneybet*1.5);
             }
              else if (DiceValue.Contains(6))
             {
-                //subtract bet amount x 2
+                //subtract bet amount x 2 to money amount
+                MoneyAmount -= (int) (moneybet*2);
             }
         }
     }
